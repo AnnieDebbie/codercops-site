@@ -60,6 +60,7 @@ const siteMetadata = {
       metadata: '0',
       // theme example: light, dark, dark_dimmed, dark_high_contrast
       // transparent_dark, preferred_color_scheme, custom
+      inputposition: "top",
       theme: 'light',
       // theme when dark mode
       darkTheme: 'transparent_dark',
@@ -69,6 +70,7 @@ const siteMetadata = {
       themeURL: '',
       // This corresponds to the `data-lang="en"` in giscus's configurations
       lang: 'en',
+      loading: "lazy",
     },
   },
   search: {
