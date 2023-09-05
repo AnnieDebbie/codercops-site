@@ -1,0 +1,62 @@
+---
+title: "Using the timeit Module to Identify Bottlenecks and Improve Performance"
+date: '2023-05-17'
+tags: ['python', 'timeit']
+draft: false
+summary: "The `timeit` module in Python is a built-in module that allows to measure time of code snnippets. It is very useful tool for comparing the performance of different approaches"
+---
+
+## Introduction
+
+The `timeit` module in Python is a built-in module that allows to measure time of code snnippets. It is very useful tool for comparing the performance of different approaches. It can be used to identify bottlenecks in the code and improve the performance of the code.
+
+## How to use it?
+
+Below is a program for sorting a list of 1000 random numbers using the `sort()` method of the list class.
+
+```python
+import random
+
+def sort_list():
+    random_list = [random.randint(0, 1000) for i in range(1000)]
+    random_list.sort()
+
+if __name__ == "__main__":
+    sort_list()
+```
+
+Now, let's use the `timeit` module to measure the time taken by the `sort_list()` function to sort the list.
+
+```python
+import timeit
+
+setup = """
+import random
+
+def sort_list():
+    random_list = [random.randint(0, 1000) for i in range(1000)]
+    random_list.sort()
+"""
+
+print(timeit.timeit("sort_list()", setup=setup, number=1000))
+```
+
+The `timeit.timeit()` function takes three arguments:
+
+- `stmt`: The statement to be measured
+
+- `setup`: The setup statement to be executed before the `stmt` statement
+
+- `number`: The number of times the `stmt` statement is to be executed
+
+The output of the above program is:
+
+```bash
+0.016000000000000014
+```
+
+The output is the time taken by the `sort_list()` function to sort the list 1000 times. The time is in seconds. The time taken by the `sort_list()` function to sort the list once is `0.016/1000 = 0.000016` seconds.
+
+## Conclusion
+
+The `timeit` module is a very useful tool for measuring the time taken by a code snippet to execute. It can be used to compare the performance of different approaches to solve a problem. It can also be used to identify bottlenecks in the code and improve the performance of the code.

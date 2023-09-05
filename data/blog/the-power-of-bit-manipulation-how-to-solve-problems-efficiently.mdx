@@ -1,0 +1,785 @@
+---
+title: "The Power of Bit Manipulation - Let's smash some bits!"
+date: '2023-05-17'
+tags: ['algorithm', 'bit manipulation', 'python']
+draft: false
+summary: 'In this article, we will learn everything about bit manipulation and how to solve problems efficiently using bit manipulation.'
+---
+
+## Introduction
+
+In this article, we will learn about bit manipulation and how to solve problems efficiently using bit manipulation.
+
+## What is Bit Manipulation?
+
+Bit manipulation is the act of algorithmically manipulating bits or other pieces of data shorter than a byte. Closely related to bit manipulation is bitwise operations. In bitwise operations, we perform operations on individual bits of a number. Bit manipulation is used in many algorithms and data structures where we need to store data in a compact space.
+
+## Bitwise Operators
+
+Bitwise operators are used to perform operations on individual bits of a number. Bitwise operators are used in many algorithms and data structures where we need to store data in a compact space. In Python, we have the following bitwise operators:
+
+- `&` (AND): Returns 1 if both bits are 1, else 0.
+- `|` (OR): Returns 1 if either of the bits is 1, else 0.
+- `^` (XOR): Returns 1 if both bits are different, else 0.
+- `~` (NOT): Returns 1 if the bit is 0, else 0.
+- `<<` (Left Shift): Shifts the bits to the left by the specified number of places.
+- `>>` (Right Shift): Shifts the bits to the right by the specified number of places.
+
+### Bitwise AND (&) Operator
+
+The bitwise AND operator returns 1 if both bits are 1, else 0. The truth table for the bitwise AND operator is as follows:
+
+| A   | B   | A & B |
+| --- | --- | ----- |
+| 0   | 0   | 0     |
+| 0   | 1   | 0     |
+| 1   | 0   | 0     |
+| 1   | 1   | 1     |
+
+Example:
+
+```python
+x = 5 # 0101
+y = 3 # 0011
+
+print(x & y) # 0001
+```
+
+### Bitwise OR (|) Operator
+
+The bitwise OR operator returns 1 if either of the bits is 1, else 0. The truth table for the bitwise OR operator is as follows:
+
+| A   | B   | A \| B |
+| --- | --- | ------ |
+| 0   | 0   | 0      |
+| 0   | 1   | 1      |
+| 1   | 0   | 1      |
+| 1   | 1   | 1      |
+
+Example:
+
+```python
+x = 5 # 0101
+y = 3 # 0011
+
+print(x | y) # 0111
+```
+
+### Bitwise XOR (^) Operator
+
+The bitwise XOR operator returns 1 if both bits are different, else 0. The truth table for the bitwise XOR operator is as follows:
+
+| A   | B   | A ^ B |
+| --- | --- | ----- |
+| 0   | 0   | 0     |
+| 0   | 1   | 1     |
+| 1   | 0   | 1     |
+| 1   | 1   | 0     |
+
+Example:
+
+```python
+x = 5 # 0101
+y = 3 # 0011
+
+print(x ^ y) # 0110
+```
+
+### Bitwise NOT (~) Operator
+
+The bitwise NOT operator returns 1 if the bit is 0, else 0. The truth table for the bitwise NOT operator is as follows:
+
+| A   | ~A  |
+| --- | --- |
+| 0   | 1   |
+| 1   | 0   |
+
+Example:
+
+```python
+x = 5 # 0101
+
+print(~x) # 1010
+```
+
+### Bitwise Left Shift `(<<)` Operator
+
+The bitwise left shift operator shifts the bits to the left by the specified number of places. The leftmost bits are discarded and the rightmost bits are filled with 0. Example of left shift operator:
+
+```python
+x = 5 # 0101
+
+print(x << 1) # 1010
+```
+
+**How does the left shift operator work?** Let's take an example. Suppose we have a number 5 (0101) and we want to shift it to the left by 1 place. The leftmost bit is discarded and the rightmost bit is filled with 0. So, the number becomes 1010.
+
+Take another example. Suppose we have a number 56 (111000) and we want to shift it to the left by 2 places. The leftmost 2 bits are discarded and the rightmost bits are filled with 0. So, the number becomes 100000.
+
+### Bitwise Right Shift (>>) Operator
+
+The bitwise right shift operator shifts the bits to the right by the specified number of places. The rightmost bits are discarded and the leftmost bits are filled with 0. Example of right shift operator:
+
+```python
+x = 5 # 0101
+
+print(x >> 1) # 0010
+```
+
+**How does the right shift operator work?** Let's take an example. Suppose we have a number 5 (0101) and we want to shift it to the right by 1 place. The rightmost bit is discarded and the leftmost bit is filled with 0. So, the number becomes 0010.
+
+Take another example. Suppose we have a number 56 (111000) and we want to shift it to the right by 2 places. The rightmost 2 bits are discarded and the leftmost bits are filled with 0. So, the number becomes 001110.
+
+## Bit Masking
+
+Bit masking is the act of performing bitwise operations on a number to get a specific bit or set of bits. Bit masking is used in many algorithms and data structures where we need to store data in a compact space.
+
+### Get the ith Bit
+
+To get the ith bit of a number, we can use the following formula:
+
+```python
+ith_bit = (num >> i) & 1
+```
+
+In the above formula, `num` is the number whose ith bit we want to get and `i` is the index of the bit.
+
+Example:
+
+```python
+num = 5 # 0101
+i = 2
+
+ith_bit = (num >> i) & 1
+print(ith_bit) # 1
+```
+
+**How does the above formula work?** Let's take an example. Suppose we have a number 5 (0101) and we want to get the 2nd bit. First, we shift the number to the right by 2 places. So, the number becomes 0001. Then, we perform the bitwise AND operation with 1. So, the number becomes 0001.
+
+### Set the ith Bit
+
+To set the ith bit of a number, we can use the following formula:
+
+```python
+num = num | (1 << i)
+```
+
+In the above formula, `num` is the number whose ith bit we want to set and `i` is the index of the bit.
+
+Example:
+
+```python
+num = 5 # 0101
+i = 2
+
+num = num | (1 << i)
+print(num) # 5 (0101)
+```
+
+**How does the above formula work?** Let's take an example. Suppose we have a number 5 (0101) and we want to set the 2nd bit. First, we shift 1 to the left by 2 places. So, the number becomes 0100. Then, we perform the bitwise OR operation with 5. So, the number becomes 0101.
+
+### Unset the ith Bit
+
+To unset the ith bit of a number, we can use the following formula:
+
+```python
+num = num & ~(1 << i)
+```
+
+In the above formula, `num` is the number whose ith bit we want to unset and `i` is the index of the bit.
+
+Example:
+
+```python
+num = 5 # 0101
+i = 2
+
+num = num & ~(1 << i)
+print(num) # 1 (0001)
+```
+
+**How does the above formula work?** Let's take an example. Suppose we have a number 5 (0101) and we want to unset the 2nd bit. First, we shift 1 to the left by 2 places. So, the number becomes 0100. Then, we perform the bitwise NOT operation on 0100. So, the number becomes 1011. Then, we perform the bitwise AND operation with 5. So, the number becomes 0001.
+
+### Toggle the ith Bit
+
+To toggle the ith bit of a number, we can use the following formula:
+
+```python
+num = num ^ (1 << i)
+```
+
+In the above formula, `num` is the number whose ith bit we want to toggle and `i` is the index of the bit.
+
+Example:
+
+```python
+num = 5 # 0101
+i = 2
+
+num = num ^ (1 << i)
+print(num) # 1 (0001)
+```
+
+**How does the above formula work?** Let's take an example. Suppose we have a number 5 (0101) and we want to toggle the 2nd bit. First, we shift 1 to the left by 2 places. So, the number becomes 0100. Then, we perform the bitwise XOR operation with 5. So, the number becomes 0001.
+
+### Check if the ith Bit is Set
+
+To check if the ith bit of a number is set, we can use the following formula:
+
+```python
+is_set = num & (1 << i)
+```
+
+In the above formula, `num` is the number whose ith bit we want to check and `i` is the index of the bit.
+
+Example:
+
+```python
+num = 5 # 0101
+i = 2
+
+is_set = num & (1 << i)
+print(is_set) # 4 (0100)
+```
+
+**How does the above formula work?** Let's take an example. Suppose we have a number 5 (0101) and we want to check if the 2nd bit is set. First, we shift 1 to the left by 2 places. So, the number becomes 0100. Then, we perform the bitwise AND operation with 5. So, the number becomes 0100.
+
+### Check if the ith Bit is Unset
+
+To check if the ith bit of a number is unset, we can use the following formula:
+
+```python
+is_unset = ~(num & (1 << i))
+```
+
+In the above formula, `num` is the number whose ith bit we want to check and `i` is the index of the bit.
+
+Example:
+
+```python
+num = 5 # 0101
+i = 2
+
+is_unset = ~(num & (1 << i))
+print(is_unset) # 0 (0000)
+```
+
+**How does the above formula work?** Let's take an example. Suppose we have a number 5 (0101) and we want to check if the 2nd bit is unset. First, we shift 1 to the left by 2 places. So, the number becomes 0100. Then, we perform the bitwise AND operation with 5. So, the number becomes 0100. Then, we perform the bitwise NOT operation on 0100. So, the number becomes 1011.
+
+### Check if the ith Bit is Toggled
+
+To check if the ith bit of a number is toggled, we can use the following formula:
+
+```python
+is_toggled = num ^ (1 << i)
+```
+
+In the above formula, `num` is the number whose ith bit we want to check and `i` is the index of the bit.
+
+Example:
+
+```python
+num = 5 # 0101
+i = 2
+
+is_toggled = num ^ (1 << i)
+print(is_toggled) # 1 (0001)
+```
+
+**How does the above formula work?** Let's take an example. Suppose we have a number 5 (0101) and we want to check if the 2nd bit is toggled. First, we shift 1 to the left by 2 places. So, the number becomes 0100. Then, we perform the bitwise XOR operation with 5. So, the number becomes 0001.
+
+### Unset the Rightmost Set Bit
+
+To unset the rightmost set bit of a number, we will put i = 0 in the above formula to unset the 0th bit.
+
+```python
+num = num & (num - 1)
+```
+
+Example:
+
+```python
+num = 5 # 0101
+
+num = num & (num - 1)
+
+print(num) # 4 (0100)
+```
+
+## Bit Counting
+
+### Count the Number of Set Bits
+
+To count the number of set bits in a number, we can use the following formula:
+
+```python
+count = 0
+while num:
+    num = num & (num - 1)
+    count += 1
+```
+
+In the above formula, `num` is the number whose set bits we want to count.
+
+Example:
+
+```python
+num = 5 # 0101
+
+count = 0
+
+while num:
+    num = num & (num - 1)
+    count += 1
+
+print(count) # 2
+```
+
+In the above example, we have a number 5 (0101). We unset the rightmost set bit of the number. So, the number becomes 4 (0100). Then, we unset the rightmost set bit of the number. So, the number becomes 0 (0000). So, we have counted 2 set bits. So, the number of set bits in 5 is 2.
+
+### Count the Number of Unset Bits
+
+To count the number of unset bits in a number, we can use the following formula:
+
+```python
+count = 0
+
+while num:
+    num = num & (num - 1)
+    count += 1
+
+count = 32 - count
+```
+
+In the above formula, `num` is the number whose unset bits we want to count.
+
+Example:
+
+```python
+num = 5 # 0101
+
+count = 0
+
+while num:
+    num = num & (num - 1)
+    count += 1
+
+count = 32 - count
+
+print(count) # 30
+```
+
+In the above example, we have a number 5 (0101). We unset the rightmost set bit of the number. So, the number becomes 4 (0100). Then, we unset the rightmost set bit of the number. So, the number becomes 0 (0000). So, we have counted 2 set bits. So, the number of unset bits in 5 is 30. We subtract the number of set bits from 32 to get the number of unset bits because the number of set bits + the number of unset bits = 32. So, the number of unset bits = 32 - the number of set bits. So, the number of unset bits in 5 is 30.
+
+## Bit Rotation
+
+Bit rotation is the process of shifting all the bits of a number to the left or right by a certain number of places. The bits that are shifted out of the number are appended to the right or left of the number.
+
+### Left Rotate a Number
+
+To left rotate a number means to shift all the bits of the number to the left by a certain number of places. The bits that are shifted out of the number are appended to the right of the number. To left rotate a number, we can use the following formula:
+
+```python
+num = (num << i) | (num >> (32 - i))
+```
+
+In the above formula, `num` is the number that we want to left rotate and `i` is the number of places by which we want to left rotate the number.
+
+Example:
+
+```python
+num = 14 # 1110
+i = 2
+
+num = (num << i) | (num >> (32 - i))
+
+print(num) # 56 (111000)
+```
+
+In the above example, we have a number 14 (1110). We left rotate the number by 2 places. So, the number becomes 56 (111000).
+
+### Right Rotate a Number
+
+To right rotate a number means to shift all the bits of the number to the right by a certain number of places. The bits that are shifted out of the number are appended to the left of the number. To right rotate a number, we can use the following formula:
+
+```python
+num = (num >> i) | (num << (32 - i))
+```
+
+In the above formula, `num` is the number that we want to right rotate and `i` is the number of places by which we want to right rotate the number.
+
+Example:
+
+```python
+num = 26 # 11010
+i = 2
+
+num = (num >> i) | (num << (32 - i))
+
+print(num) # 104 (1101000)
+```
+
+In the above example, we have a number 26 (11010). We right rotate the number by 2 places. So, the number becomes 104 (1101000).
+
+## Bit Reversal
+
+Bit reversal is the process of reversing the bits of a number. To reverse the bits of a number, we can use the following formula:
+
+```python
+num = (num >> 16) | (num << 16)
+num = ((num & 0xFF00FF00) >> 8) | ((num & 0x00FF00FF) << 8)
+num = ((num & 0xF0F0F0F0) >> 4) | ((num & 0x0F0F0F0F) << 4)
+num = ((num & 0xCCCCCCCC) >> 2) | ((num & 0x33333333) << 2)
+num = ((num & 0xAAAAAAAA) >> 1) | ((num & 0x55555555) << 1)
+```
+
+In the above formula, `num` is the number whose bits we want to reverse. The logic behind the above formula is that we first swap the bits in the first 16 bits with the bits in the last 16 bits. Then, we swap the bits in the first 8 bits with the bits in the last 8 bits. Then, we swap the bits in the first 4 bits with the bits in the last 4 bits. Then, we swap the bits in the first 2 bits with the bits in the last 2 bits. Then, we swap the bits in the first bit with the bits in the last bit. Learn more about bit reversal [here](https://www.geeksforgeeks.org/reverse-actual-bits-given-number/).
+
+Example:
+
+```python
+num = 26 # 11010
+
+num = (num >> 16) | (num << 16)
+
+num = ((num & 0xFF00FF00) >> 8) | ((num & 0x00FF00FF) << 8)
+num = ((num & 0xF0F0F0F0) >> 4) | ((num & 0x0F0F0F0F) << 4)
+num = ((num & 0xCCCCCCCC) >> 2) | ((num & 0x33333333) << 2)
+num = ((num & 0xAAAAAAAA) >> 1) | ((num & 0x55555555) << 1)
+
+print(num) # 13 (01101)
+```
+
+In the above example, we have a number 26 (11010). We reverse the bits of the number. So, the number becomes 13 (01101).
+
+## Bit Swapping
+
+Bit swapping is the process of swapping the bits of a number. To swap the bits of a number, we can use the following formula:
+
+```python
+num = ((num & 0xAAAAAAAA) >> 1) | ((num & 0x55555555) << 1)
+num = ((num & 0xCCCCCCCC) >> 2) | ((num & 0x33333333) << 2)
+num = ((num & 0xF0F0F0F0) >> 4) | ((num & 0x0F0F0F0F) << 4)
+num = ((num & 0xFF00FF00) >> 8) | ((num & 0x00FF00FF) << 8)
+num = (num >> 16) | (num << 16)
+```
+
+In the above formula, `num` is the number whose bits we want to swap. The logic behind the above formula is that we first swap the bits in the first bit with the bits in the last bit. Then, we swap the bits in the first 2 bits with the bits in the last 2 bits. Then, we swap the bits in the first 4 bits with the bits in the last 4 bits. Then, we swap the bits in the first 8 bits with the bits in the last 8 bits. Then, we swap the bits in the first 16 bits with the bits in the last 16 bits.
+
+Example:
+
+```python
+num = 26 # 11010
+
+num = ((num & 0xAAAAAAAA) >> 1) | ((num & 0x55555555) << 1)
+num = ((num & 0xCCCCCCCC) >> 2) | ((num & 0x33333333) << 2)
+num = ((num & 0xF0F0F0F0) >> 4) | ((num & 0x0F0F0F0F) << 4)
+num = ((num & 0xFF00FF00) >> 8) | ((num & 0x00FF00FF) << 8)
+num = (num >> 16) | (num << 16)
+
+print(num) # 13 (01101)
+```
+
+In the above example, we have a number 26 (11010). We swap the bits of the number. So, the number becomes 13 (01101).
+
+## Bit Manipulation Tricks
+
+### Check if a Number is a Power of Two
+
+To check if a number is a power of two, we can use the following formula:
+
+```python
+num & (num - 1) == 0
+```
+
+Example:
+
+```python
+num = 8 # 1000
+num = num & (num - 1)
+print(num) # 0
+```
+
+In the above example, we have a number 8 (1000). We check if the number is a power of two. Since the number is a power of two, the number becomes 0 (0000).
+
+### Check if a Number is a Power of Four
+
+To check if a number is a power of four, we can use the following formula:
+
+```python
+num & (num - 1) == 0 and num & 0xAAAAAAAA == 0
+```
+
+Example:
+
+```python
+num = 16 # 10000
+num = num & (num - 1)
+print(num) # 0
+```
+
+In the above example, we have a number 16 (10000). We check if the number is a power of four. Since the number is a power of four, the number becomes 0 (0000).
+
+### Swapping Two Numbers
+
+To swap two numbers, we can use the following formula:
+
+```python
+a = a ^ b
+b = a ^ b
+a = a ^ b
+```
+
+Example:
+
+```python
+a = 5 # 101
+b = 7 # 111
+
+a = a ^ b # 010
+b = a ^ b # 101
+a = a ^ b # 111
+
+print(a) # 7
+print(b) # 5
+```
+
+In the above example, we have two numbers 5 (101) and 7 (111). We swap the numbers. So, the numbers become 7 (111) and 5 (101).
+
+### Check if a Number is Even or Odd
+
+To check if a number is even or odd, we can use the following formula:
+
+```python
+num & 1 == 0
+```
+
+Example:
+
+```python
+num = 5 # 101
+print(num & 1 == 0) # False
+```
+
+In the above example, we have a number 5 (101). We check if the number is even or odd. Since the number is odd, the number becomes False.
+
+### Determine the Sign of a Number
+
+To determine the sign of a number, we can use the following formula:
+
+```python
+num >> 31
+```
+
+Example:
+
+```python
+x = -10 # 11111111111111111111111111110110
+print(x >> 31) # -1
+```
+
+In the above example, we have a number -10 (11111111111111111111111111110110). We determine the sign of the number. Since the number is negative, the number becomes -1 (111111) in binary.
+
+### Find the Absolute Value of a Number
+
+To find the absolute value of a number, we can use the following formula:
+
+```python
+num >> 31 ^ num - (num >> 31)
+```
+
+Example:
+
+```python
+x = -10 # 11111111111111111111111111110110
+
+x = x >> 31 ^ x - (x >> 31)
+print(x) # 10
+```
+
+In the above example, we have a number -10 (11111111111111111111111111110110). We find the absolute value of the number. So, the number becomes 10 (1010).
+
+### Find the Maximum of Two Numbers
+
+To find the maximum of two numbers, we can use the following formula:
+
+```python
+x ^ ((x ^ y) & -(x < y))
+```
+
+Example:
+
+```python
+x = 5 # 101
+y = 7 # 111
+
+max = x ^ ((x ^ y) & -(x < y))
+print(max) # 7
+```
+
+In the above example, we have two numbers 5 (101) and 7 (111). We find the maximum of the two numbers. So, the number becomes 7 (111).
+
+### Find the Minimum of Two Numbers
+
+To find the minimum of two numbers, we can use the following formula:
+
+```python
+min = y ^ ((x ^ y) & -(x < y))
+```
+
+### Find logaritmic value of a number
+
+To find the logaritmic value of a number, we can use the following formula:
+
+```python
+def log(x):
+    y = 0
+    while x > 1:
+        x >>= 1
+        y += 1
+    return y
+```
+
+Example:
+
+```python
+x = 256 # 100000000
+print(log(x)) # 8
+```
+
+In the above example, we have a number 256 (100000000). We find the logaritmic value of the number. So, the number becomes 8 (1000).
+
+## Bit Manipulation Based Algorithms
+
+There are many algorithms that can be implemented efficiently using bit manipulation. Some of these algorithms are:
+
+- **Bitonic sort**: Bitonic sort is an efficient sorting algorithm that can be implemented using bit manipulation. It works by dividing the input array into pairs of elements and comparing them using bit manipulation. The algorithm then recursively sorts the resulting arrays using the same process.
+
+- **Bitwise trie**: A bitwise trie is a data structure that can be used to store and retrieve data efficiently. It works by using bit manipulation to store the data in a tree-like structure, with each bit of the data serving as a branch in the tree.
+
+- **Bitmap**: A bitmap is a data structure that can be used to store a large number of boolean values efficiently. It works by using bit manipulation to store the values in an array of bits, with each bit representing a boolean value.
+
+- **Hash table**: A hash table is a data structure that can be used to store and retrieve data efficiently. It works by using bit manipulation to compute the hash value of the data, which is then used to index into an array of buckets.
+
+These are just a few examples of algorithms that can be implemented using bit manipulation. There are many other algorithms that can be implemented efficiently using bit manipulation, including algorithms for searching, sorting, and data compression. But are example code so you all can understand effectively.
+
+**Bitonic sort**:
+
+```python
+def bitonic_sort(arr):
+    # Base case: return the array if it has 1 or 0 elements
+    if len(arr) <= 1:
+        return arr
+
+    # Divide the array into two halves
+    mid = len(arr) // 2
+    left = arr[:mid]
+    right = arr[mid:]
+
+    # Recursively sort the two halves
+    left = bitonic_sort(left)
+    right = bitonic_sort(right)
+
+    # Compare the elements in the two halves using bit manipulation
+    for i in range(mid):
+        if (left[i] > right[i]) == (i & 1):
+            left[i], right[i] = right[i], left[i]
+
+    # Concatenate the sorted halves and return the result
+    return left + right
+
+arr = [3, 7, 4, 8, 6, 2, 1, 5]
+sorted_arr = bitonic_sort(arr)
+print(sorted_arr)  # The output is [1, 2, 3, 4, 5, 6, 7, 8]
+```
+
+**Bitwise trie**:
+
+```python
+class BitwiseTrie:
+    def __init__(self):
+        self.children = [None, None]
+
+    def insert(self, num):
+        node = self
+        for i in range(31, -1, -1):
+            bit = (num >> i) & 1
+            if not node.children[bit]:
+                node.children[bit] = BitwiseTrie()
+            node = node.children[bit]
+
+trie = BitwiseTrie()
+trie.insert(85)  # Insert the number 85 (0b01010101) into the trie
+trie.insert(170)  # Insert the number 170 (0b10101010) into the trie
+```
+
+**Bitmap**:
+
+```python
+class Bitmap:
+    def __init__(self, size):
+        self.bits = [0] * ((size + 31) // 32)
+
+    def set_bit(self, pos):
+        self.bits[pos // 32] |= (1 << (pos % 32))
+
+    def clear_bit(self, pos):
+        self.bits[pos // 32] &= ~(1 << (pos % 32))
+
+    def get_bit(self, pos):
+        return self.bits[pos // 32] & (1 << (pos % 32))
+
+bitmap = Bitmap(100)  # Create a bitmap with 100 bits
+bitmap.set_bit(10)  # Set the 11th bit (counting from the right) to 1
+bitmap.clear_bit(10)  # Clear the 11th bit (counting from the right)
+if bitmap.get_bit(10):
+    print("The 11th bit (counting from the right) is set to 1")
+else:
+    print("The 11th bit (counting from the right) is not set to 1")
+Hash table:
+class HashTable:
+    def __init__(self, size):
+        self.size = size
+        self.buckets = [None] * size
+
+    def hash_function(self, key):
+        # Compute the hash value using bit manipulation
+        hash_value = 0
+        for c in key:
+            hash_value = (hash_value << 5) + hash_value + ord(c)
+        return hash_value % self.size
+
+    def insert(self, key, value):
+        # Compute the hash value of the key
+        hash_value = self.hash_function(key)
+
+        # Insert the key-value pair into the appropriate bucket
+        self.buckets[hash_value] = (key, value)
+
+    def lookup(self, key):
+        # Compute the hash value of the key
+        hash_value = self.hash_function(key)
+
+        # Look up the key-value pair in the appropriate bucket
+        return self.buckets[hash_value]
+
+hash_table = HashTable(100)  # Create a hash table with 100 buckets
+hash_table.insert("apple", "red")  # Insert the key-value pair "apple"-"red"
+hash_table.insert("banana", "yellow")  # Insert the key-value pair "banana"-"yellow"
+print(hash_table.lookup("apple"))  # The output is ("apple", "red")
+print(hash_table.lookup("banana"))  # The output is ("banana", "yellow")
+```
+
+## Conclusion
+
+"In conclusion, bit manipulation is a powerful tool that can help programmers solve problems efficiently and effectively. Whether you are competing in programming contests or working on real-world projects, a strong understanding of bit manipulation can give you a competitive edge.
+
+To master bit manipulation, it is important to practice using it to solve problems. You can find many online resources, such as online judges and programming contests, that offer challenges that can help you hone your skills. You can also create your own problems to solve, or explore more advanced techniques such as bit manipulation-based algorithms and data structures.
+
+There are many resources available for learning about bit manipulation, including books, online tutorials, and blogs. Take the time to explore these resources and continue learning about this important topic. With dedication and practice, you can become a bit manipulation pro and unlock the full potential of this powerful tool.
+
+Thank you for reading this article. I hope you found it useful and that it has inspired you to learn more about bit manipulation. If you have any questions or comments, please feel free to leave them below. I would love to hear from you!
+
+**Happy coding!** :smile: :computer: :keyboard: :rocket:
+
+**Hope you follow me on GitHub and Twitter** :star: :heart:

@@ -1,0 +1,241 @@
+---
+title: Plant Diseases Detection using Deep Learning
+date: '2023-05-18'
+tags: ['deep learning', 'machine learning', 'tensorflow', 'python']
+draft: false
+summary: 'Building a plant diseases detection model using deep learning.'
+---
+
+# Introduction
+
+In this post we will be building a plant diseases detection model using deep learning. We will be using the [New Plant Diseases Dataset](https://www.kaggle.com/datasets/vipoooool/new-plant-diseases-dataset) dataset from Kaggle. 
+
+## Dataset
+
+The dataset consists of about 87,000 images of healthy and diseased plant leaves. The dataset contains 38 different classes of plant leaves. The total dataset is divided into 80/20 ratio of training and validation set preserving the directory structure. A new directory is also created for testing the model.
+
+## Importing Libraries
+
+```python
+import pandas as pd
+import numpy as np
+import tensorflow as tf
+from tensorflow.keras import models, layers
+import matplotlib.pyplot as plt
+```
+
+## Setting the Hyperparameters
+
+We will be setting the hyperparameters for the model. We will be using the following hyperparameters:
+
+```python
+image_size = 256
+batch_size =32
+channels = 3
+epoches = 12
+```
+
+## Loading the Dataset
+
+For loading the dataset we will be using the `image_dataset_from_directory` function. This function takes the path of the dataset directory and returns a `tf.data.Dataset` object. The `tf.data.Dataset` object is a powerful tool for building input pipelines for TensorFlow models. It allows us to easily load data from disk, apply transformations, and feed the data into our model.
+
+```python
+dataset = tf.keras.preprocessing.image_dataset_from_directory(
+    '../input/new-plant-diseases-dataset/',
+    shuffle = True,
+    image_size = (image_size, image_size),
+    batch_size = batch_size
+)
+```
+
+**Storing and printing the class names**
+
+```python
+class_names = dataset.class_names
+print(class_names)
+```
+
+## Visualizing the Images
+
+```python
+plt.figure(figsize=(10, 10))
+for image_batch, label_batch in dataset.take(1):
+    for i in range(12):
+        ax = plt.subplot(3, 4, i+1)
+        plt.imshow(image_batch[i].numpy().astype("uint8"))
+        plt.title(class_names[label_batch[i]])
+```
+
+In the above code we are taking the first batch of images and labels from the dataset and then plotting the images with their corresponding labels.
+
+## Splitting the Dataset
+
+We will be splitting the dataset into training, validation and testing set.
+
+```python
+def get_dataset_partitions_tf(ds, train_split=0.8, val_split=0.1, test_split=0.1, shuffle=True, shuffle_size = 10000):
+    ds_size = len(ds)
+
+    if shuffle:
+        ds = ds.shuffle(shuffle_size, seed = 12)
+
+    train_size = int(train_split * ds_size)
+    val_size = int(val_split*ds_size)
+
+    train_ds = ds.take(train_size)
+
+    val_ds = ds.skip(train_size).take(val_size)
+    test_ds = ds.skip(train_size).skip(val_size)
+
+    return train_ds, val_ds, test_ds
+```
+
+In the above code we are defining a function that takes the dataset and splits it into training, validation and testing set. The function takes the dataset and the split ratio as input and returns the training, validation and testing set.
+
+```python
+train_ds, val_ds, test_ds = get_dataset_partitions_tf(dataset)
+```
+
+**Getting the length of the training, validation and testing set**
+
+```python
+print("Len train_set = ", len(train_ds))
+print("Len val_set = ", len(val_ds))
+print("Len test_set = ", len(test_ds))
+```
+
+## Caching, Prefetching and Batching the Dataset
+
+```python
+train_ds = train_ds.cache().shuffle(1000).prefetch(buffer_size=tf.data.AUTOTUNE)
+val_ds = val_ds.cache().shuffle(1000).prefetch(buffer_size=tf.data.AUTOTUNE)
+test_ds = test_ds.cache().shuffle(1000).prefetch(buffer_size=tf.data.AUTOTUNE)
+```
+
+Above we are caching, shuffling and prefetching the dataset. Caching the dataset will store the images in memory after they are loaded off disk during the first epoch. This will ensure the dataset does not become a bottleneck while training the model. Shuffling the dataset will ensure that the model does not see the same order of examples during each epoch. Prefetching the dataset will ensure that the data is immediately available for the next iteration of training.
+
+## Resizing and Rescaling the Images
+
+```python
+resize_and_rescale = tf.keras.Sequential([
+    layers.experimental.preprocessing.Resizing(image_size, image_size),
+    layers.experimental.preprocessing.Rescaling(1.0/255)
+])
+```
+
+Above we are resizing the images to the specified size and rescaling the images to the range of 0 to 1.
+
+## Data Augmentation
+
+```python
+data_augumentation = tf.keras.Sequential([
+    layers.experimental.preprocessing.RandomFlip("horizontal_and_vertical"),
+    layers.experimental.preprocessing.RandomRotation(0.2)
+])
+```
+
+Above we are performing data augmentation on the images. Data augmentation is a technique to artificially create new training data from existing training data. This helps to avoid overfitting and helps the model generalize better.
+
+## Building the Model
+
+```python
+input_shape = (batch_size, image_size, image_size, channels)
+num_classes = 38
+model = models.Sequential([
+    resize_and_rescale, 
+    data_augumentation,
+    layers.Conv2D(32, (3, 3), activation='relu', input_shape=input_shape),
+    layers.MaxPooling2D((2, 2)), 
+    layers.Conv2D(64, kernel_size = (3, 3), activation='relu'),
+    layers.MaxPooling2D((2, 2)), 
+    layers.Conv2D(64, kernel_size = (3, 3), activation='relu'),
+    layers.MaxPooling2D((2, 2)), 
+    layers.Conv2D(64, (3, 3), activation='relu'),
+    layers.MaxPooling2D((2, 2)), 
+    layers.Conv2D(64, (3, 3), activation='relu'),
+    layers.MaxPooling2D((2, 2)), 
+    layers.Conv2D(64, (3, 3), activation='relu'),
+    layers.MaxPooling2D((2, 2)), 
+    layers.Flatten(),
+    layers.Dense(64, activation='relu'),
+    layers.Dense(num_classes, activation='softmax'),
+])
+
+model.build(input_shape)
+
+model.summary()
+```
+
+We are using a sequential model with the following layers:
+
+- **Resize and Rescale Layer** - This layer resizes the images to the specified size and rescales the images to the range of 0 to 1.
+- **Data Augmentation Layer** - This layer performs data augmentation on the images. Data augmentation is a technique to artificially create new training data from existing training data. This helps to avoid overfitting and helps the model generalize better.
+- **Convolutional Layer** - This layer performs convolution on the input image. Convolution is a mathematical operation that takes two inputs such as image matrix and a filter or kernel. The filter is applied to the input image and the output is a feature map.
+- **Max Pooling Layer** - This layer performs max pooling on the input image. Max pooling is a technique to reduce the dimensionality of the input image. It is done by taking the maximum value from the portion of the image covered by the kernel.
+- **Flatten Layer** - This layer flattens the input image into a single dimension.
+- **Dense Layer** - This layer performs the operation of output = activation(dot(input, kernel) + bias). It is used to perform classification on the input image.
+
+## Compiling the Model
+
+```python
+model.compile(
+    optimizer='adam', 
+    loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False),
+    metrics = ['accuracy']
+)
+```
+
+We are compiling the model with the following parameters:
+
+- **Optimizer** - This is the optimizer that will be used to update the weights of the model. We are using the Adam optimizer.
+- **Loss** - This is the loss function that will be used to calculate the loss of the model. We are using the Sparse Categorical Crossentropy loss function.
+- **Metrics** - This is the metric that will be used to evaluate the performance of the model. We are using the accuracy metric.
+
+## Training the Model
+
+```python
+history = model.fit(
+    train_ds, 
+    epochs = epoches,
+    batch_size = batch_size,
+    verbose=1,
+    validation_data = val_ds
+)
+```
+
+We are training the model with the following parameters:
+
+- **Training Dataset** - This is the training dataset that will be used to train the model.
+- **Epochs** - This is the number of epochs that the model will be trained for.
+- **Batch Size** - This is the batch size that will be used to train the model.
+- **Verbose** - This is the verbosity mode that will be used to train the model.
+- **Validation Dataset** - This is the validation dataset that will be used to validate the model.
+
+## Evaluating the Model
+
+```python
+model.evaluate(test_ds)
+```
+
+We are evaluating the model on the testing dataset. The model achieves an accuracy of 0.96 on the testing dataset. This means that the model is able to correctly classify 96% of the images in the testing dataset. This is a good accuracy. We can further improve the accuracy of the model by using a more complex model architecture, using a larger dataset, using a different optimizer, using a different loss function, using a different metric, using a different batch size, using a different number of epochs, etc. We can also use transfer learning to improve the accuracy of the model. 
+
+## Saving the Model
+
+```python
+model.save("model.h5")
+```
+
+We are saving the model in the h5 format. The h5 format is a data file format that is used to store the weights and architecture of the model. We can load the model from the h5 file using the load_model() function.
+
+## Conclusion
+
+In this blog, we learned how to use deep learning to detect the diseases in plant leaves. We learned how to build a deep learning model using the Keras API. We learned how to build a sequential model with convolutional layers, max pooling layers, flatten layers, dense layers, etc. We learned how to compile the model with the Adam optimizer, Sparse Categorical Crossentropy loss function, and accuracy metric. We learned how to train the model on the training dataset and evaluate the model on the testing dataset. We learned how to save the model in the h5 format. 
+
+
+**Voyla! We have successfully built a deep learning model to detect the diseases in plant leaves.**
+
+**Hope you enjoyed reading this blog. If you have any doubts or suggestions, please comment below.**(Wait for few seconds, if the comment section doesn't load at the end of this page. Refresh the page and try again.)
+
+**Thank you for reading!**
+
+**Hope you followed me on Github and connected with me on LinkedIn.**

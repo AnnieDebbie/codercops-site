@@ -1,0 +1,139 @@
+---
+title: Create a Machine Learning API with FastAPI
+date: '2023-05-17'
+tags: ['fastapi', 'python', 'machine learning', 'api', 'tutorial', 'guide']
+draft: false
+summary: 'Create a Machine Learning API with FastAPI. This tutorial will help you to create a machine learning API with FastAPI.'
+---
+
+## Introduction
+
+FastAPI is a modern, high-performance web framework for building APIs with Python. It is built on top of the Starlette framework and is designed to be fast, easy to use, and scalable. FastAPI is a great choice for building machine learning APIs because it provides a simple way to define endpoints and models, and it has built-in support for asynchronous programming. 
+
+In this blog post, we will show you how to create a simple API for a machine learning model using FastAPI. We will use the Iris dataset to train a simple classification model, and then we will deploy the model as an API.
+
+## Prerequisites
+
+Before you can follow along with this tutorial, you will need to have the following installed:
+
+- Python 3.6 or higher
+- FastAPI library
+- Iris dataset
+- Scikit-learn library
+
+**Gettting Started**
+
+First, lets import the required libraries.
+
+```python
+import fastapi
+from fastapi.responses import JSONResponse
+from sklearn.datasets import load_iris
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+```
+
+Next, we will load the Iris dataset and split it into training and testing sets.
+
+```python
+iris = load_iris()
+X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.2, random_state=42)
+```
+
+Now, we will train a simple logistic regression model on the training set.
+
+```python
+model = LogisticRegression()
+model.fit(X_train, y_train)
+```
+
+Finally, we will evaluate the model on the testing set and print the accuracy score.
+
+```python
+y_pred = model.predict(X_test)
+print(f"Accuracy: {accuracy_score(y_test, y_pred)}")
+```
+
+## Creating the API
+
+Now that we have a trained model, we can create an API for it using FastAPI.
+
+```python
+app = fastapi.FastAPI()
+```
+
+Next, we will define the endpoint for our API that will accept a JSON object containing the features of an Iris flower and return the predicted class.
+
+```python
+@app.post("/predict")
+def predict_flower(data: dict):
+    features = [data["sepal_length"], data["sepal_width"], data["petal_length"], data["petal_width"]]
+    prediction = model.predict([features])
+    return JSONResponse({"prediction": prediction[0]})
+```
+
+Finally, we will run the API using uvicorn.
+
+```python
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="
+```
+
+That's it! We have successfully created an API for our machine learning model using FastAPI.
+
+## Testing the API
+
+Now, let's test our API. We can do this by sending a POST request to the /predict endpoint with the flower's features as the body of the request.
+
+For example, we can use the following curl command to predict the species of a flower with sepal length 5.1, sepal width 3.5, petal length 1.4, and petal width 0.2:
+
+```python
+curl -X POST -H "Content-Type: application/json" -d '{"sepal_length": 5.1, "sepal_width": 3.5, "petal_length": 1.4, "petal_width": 0.2}' http://localhost:8000/predict
+```
+
+The response should look something like this:
+
+```python
+{"prediction": setosa}
+```
+
+## Conclusion
+
+In this blog post, we have shown you how to create a simple API for a machine learning model using FastAPI. We have also shown you how to test the API using curl. We hope that this tutorial has been helpful and that you now have a better understanding of how to use FastAPI to create APIs for machine learning models.
+
+FastAPI is a powerful tool for creating APIs, and it is easy to use. If you are looking for a way to deploy your machine learning models as APIs, FastAPI is a great option.
+
+## All code in one place
+
+```python
+import fastapi
+from fastapi.responses import JSONResponse
+from sklearn.datasets import load_iris
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+iris = load_iris()
+X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.2, random_state=42)
+
+model = LogisticRegression()
+model.fit(X_train, y_train)
+
+app = fastapi.FastAPI()
+
+@app.post("/predict")
+def predict_flower(data: dict):
+    features = [data["sepal_length"], data["sepal_width"], data["petal_length"], data["petal_width"]]
+    prediction = model.predict([features])
+    return JSONResponse({"prediction": prediction[0]})
+```
+
+**Happy Coding!** 🎉🎉🎉 
+
+**Hope you liked this article.** 😊😊😊
+
+**If you have any questions, feel free to comment below.** 👇👇👇
+
+**Hope you follow me on twitter and github.** 😊😊😊

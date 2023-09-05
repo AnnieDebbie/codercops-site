@@ -1,0 +1,260 @@
+---
+title: 'Basics of Python - Variables and Data Types'
+date: '2023-05-29'
+lastmod: '2023-08-05'
+tags: ['python', 'basics', 'guide', 'variables', 'data types']
+draft: false
+summary: 'Learn about the basics of Python. This article also covers the basics of Python Variables and Data Types.'
+---
+
+## Introduction
+
+In this article, we will learn about the basics of Python and also about Python Varibales and Data Types with examples. At the end of this article, you will also find the practice questions to test your knowledge.
+
+## History and Features of Python
+
+Python is a scripting language. It is an interpreted language, which means that it does not need to be compiled before running. It's applications are in the field of web development, data science, machine learning, and artificial intelligence.
+
+## Basics: `print()`, `input()`
+
+### `print()` function
+
+In Python, the `print()` function is used to display output on the console or terminal. It allows you to print messages, variables, or any other information you want to display. The `print()` function can take one or more arguments, which are separated by commas. Here's a basic example:
+
+```python
+print("Hello, World!")
+# This will output the string "Hello, World!" to the console.
+```
+
+You can also print multiple values using the `print()` function:
+
+```python
+name = "John"
+age = 25
+print("Name:", name, "Age:", age)
+# This will output: Name: John Age: 25
+```
+
+The `print()` function automatically adds a newline character (`\n`) at the end of the output. If you want to prevent this, you can specify the end parameter:
+
+```python
+print("Hello", end="")
+print(", World!")
+# This will output: Hello, World!
+```
+
+### `input()` function
+
+The `input()` function is used to accept user input in Python. It prompts the user to enter a value, which can be stored in a variable for further processing. Here's an example:
+
+```python
+name = input("Enter your name: ")
+print("Hello, " + name + "!")
+```
+
+When this code is executed, it will display the message "Enter your name:" and wait for the user to input their name. Once the user enters their name and presses enter, the program will print a greeting message using the input value.
+
+It's important to note that the `input()` function returns a string, regardless of the user input. If you need to perform numerical operations, you may need to convert the input to the appropriate data type using functions like `int()` or `float()`.
+
+### Comments in Python
+
+Comments are used to explain the code and make it easier to understand. They are ignored by the Python interpreter, so they don't affect the execution of the program.
+
+In Python, comments start with a hash (#) symbol and continue until the end of the line. Here's an example:
+
+```python
+# This is a comment
+print("Hello, World!")
+```
+
+## Variables in Python
+
+Variables in Python are used to store and manipulate data. A variable is like a container that holds a value, which can be of different data types such as numbers, strings, lists, etc. The value of a variable can be changed during the execution of a program.
+
+In Python, you can assign a value to a variable using the assignment operator (=). Here's an example:
+
+```python
+name = "Anurag Verma"
+age = 25
+```
+
+In this example, we create two variables: `name` and `age`. The variable name stores a string value "Anurag Verma", and the variable age stores the integer value 25.
+
+**Naming Rules for Variables**
+
+- A variable name must start with a letter or underscore (\_), followed by any number of letters, digits, or underscores.
+- Variable names are case-sensitive, so `name` and `Name` are two different variables.
+- Variable names cannot be the same as any of Python's keywords, such as `print`, `input`, `if`, `for`, etc.
+
+You can also assign the same value to multiple variables simultaneously:
+
+```python
+x = y = z = 10
+```
+
+In this case, all three variables (`x`, `y`, and `z`) will have the value 10.
+
+Python allows you to assign different data types to the same variable. For example:
+
+```python
+x = 10
+x = "Hello"
+```
+
+In this case, the variable `x` is first assigned an integer value, and later it is reassigned a string value.
+
+## Data Types in Python
+
+Python has several built-in data types, which are used to represent different kinds of data. The common data types in Python include:
+
+### Numeric types:
+
+`int` - integers, e.g., 10, -3, 0
+`float` - floating-point numbers, e.g., 3.14, -2.5
+
+Examples:
+
+```python
+x = 10
+y = 3.14
+```
+
+In the above example, the variable `x` is assigned an integer value 10, and the variable `y` is assigned a floating-point value 3.14.
+
+### Strings:
+
+`str` - sequences of characters enclosed in single quotes ('...') or double quotes ("..."), e.g., "Hello", 'Python'
+
+Examples:
+
+```python
+name = "Anurag Verma"
+message = 'Hello, World!'
+```
+
+### Boolean type:
+
+`bool` - represents the truth values True and False
+
+Examples:
+
+```python
+x = True
+y = False
+```
+
+### Lists:
+
+`list` - ordered collections of items, enclosed in square brackets ([]), e.g., [1, 2, 3, 4]
+
+Examples:
+
+```python
+numbers = [1, 2, 3, 4]
+names = ["John", "Jane", "Jack"]
+```
+
+In the above example, the variable `numbers` is assigned a list of integers, and the variable `names` is assigned a list of strings. Lists can contain items of different data types.
+
+### Tuples:
+
+`tuple` - similar to lists, but they are immutable (cannot be changed once defined), enclosed in parentheses (()), e.g., (1, 2, 3)
+
+Examples:
+
+```python
+numbers = (1, 2, 3)
+names = ("John", "Jane", "Jack")
+```
+
+### Dictionaries:
+
+`dict` - unordered key-value pairs, enclosed in curly braces ({}), e.g., `{'name': 'John', 'age': 25}`
+
+Examples:
+
+```python
+person = {'name': 'John', 'age': 25}
+```
+
+Above example, the variable `person` is assigned a dictionary with two key-value pairs: 'name' and 'age'. The keys are used to access the corresponding values, e.g., `person['name']` will return the value 'John'.
+
+### Sets:
+
+`set` - unordered collections of unique items, enclosed in curly braces ({}), e.g., {1, 2, 3}
+Python also provides other advanced data types and data structures through modules and libraries, such as datetime for dates and times, numpy for arrays, and pandas for data analysis.
+
+```python
+numbers = {1, 2, 3}
+```
+
+### `type()` function in Python
+
+The `type()` function is used to determine the data type of a variable or an expression in Python. It returns the type as a value that represents the specific data type. Here's an example:
+
+```python
+x = 10
+y = "Hello"
+print(type(x))  # <class 'int'>
+print(type(y))  # <class 'str'>
+```
+
+In this example, the `type()` function is used to determine the data type of the variables `x` and `y`. It returns the type of `x` as `int` (integer) and the type of `y` as `str` (string).
+
+## Practice Questions
+
+1. What is the output of the following code?
+
+```python
+x = 10
+y = 20
+print(x + y)
+```
+
+- [x] 30
+- [ ] 1020
+- [ ] 102010
+- [ ] 1020
+
+2. Which of the following is a valid variable name in Python?
+
+- [ ] 1name
+- [ ] \_name
+- [x] name_1
+- [ ] all of the above
+
+3. Check the data type of the following variables:
+
+```python
+x = 10
+y = 20.5
+z = "Hello"
+```
+
+- [ ] int, float, str
+- [ ] int, str, float
+- [ ] float, int, str
+- [x] str, int, float
+
+4. Check weather the following variable names are valid or not:
+
+```python
+1_name = "John"
+first name = "John"
+first_name = "John"
+```
+
+- [ ] Invalid, Invalid, Valid
+- [ ] Valid, Invalid, Valid
+- [x] Invalid, Valid, Valid
+- [ ] Valid, Valid, Valid
+
+## Conclusion
+
+In this tutorial, we learned about the basic concepts of Python programming language, such as variables, data types, comments, etc. We also solved some practice questions to test our understanding of the concepts.
+
+**Hope you enjoyed this tutorial!**
+
+**Happy Learning!**
+
+**Follow me on LinkedIn, GitHub and Twitter to get updated when the next tutorial is published.**

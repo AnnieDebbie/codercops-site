@@ -1,0 +1,919 @@
+---
+title: In Depth Basics of Python with Question and Solution
+date: '2023-05-16'
+tags: ['python', 'basics']
+draft: false
+summary: 'In this tutorial, you will learn about basic python programming with question and solution. This tutorial is for beginners.'
+---
+
+# Python Basics
+
+Python is a popular programming language. It was created by Guido van Rossum, and released in 1991. It is used for:
+
+- web development (server-side),
+- software development,
+- mathematics,
+- system scripting.
+
+## What can Python do?
+
+- Python can be used on a server to create web applications.
+- Python can be used alongside software to create workflows.
+- Python can connect to database systems. It can also read and modify files.
+- Python can be used to handle big data and perform complex mathematics.
+- Python can be used for rapid prototyping, or for production-ready software development.
+
+## Why Python?
+
+- Python works on different platforms (Windows, Mac, Linux, Raspberry Pi, etc).
+- Python has a simple syntax similar to the English language.
+- Python has syntax that allows developers to write programs with fewer lines than some other programming languages.
+- Python runs on an interpreter system, meaning that code can be executed as soon as it is written. This means that prototyping can be very quick.
+- Python can be treated in a procedural way, an object-oriented way or a functional way.
+
+## Good to know
+
+- The most recent major version of Python is Python 3, which we shall be using in this tutorial. However, Python 2, although not being updated with anything other than security updates, is still quite popular.
+- In this tutorial Python will be written in a text editor. It is possible to write Python in an Integrated Development Environment, such as Thonny, Pycharm, Netbeans or Eclipse which are particularly useful when managing larger collections of Python files.
+- Python Syntax compared to other programming languages
+- Python was designed for readability, and has some similarities to the English language with influence from mathematics.
+- Python uses new lines to complete a command, as opposed to other programming languages which often use semicolons or parentheses.
+- Python relies on indentation, using whitespace, to define scope; such as the scope of loops, functions and classes. Other programming languages often use curly-brackets for this purpose.
+
+## Python Install
+
+You can download Python from the official website for free: https://www.python.org
+
+## Python Quickstart
+
+Python is an interpreted programming language, this means that as a developer you write Python (.py) files in a text editor and then put those files into the python interpreter to be executed.
+
+The way to run a python file is like this on the command line:
+
+```bash
+python3 helloworld.py
+```
+
+Where "helloworld.py" is the name of your python file.
+
+Let's write our first Python file, called helloworld.py, which can be done in any text editor.
+
+```python
+print("Hello, World!")
+```
+
+Simple as that. Save your file. Open your command line, navigate to the directory where you saved your file, and run:
+
+```bash
+python3 helloworld.py
+```
+
+## Python Syntax
+
+Python syntax can be executed by writing directly in the Command Line:
+
+```bash
+python3
+```
+
+or by creating a python file on the server, using the .py file extension, and running it in the Command Line:
+
+```bash
+python3 helloworld.py
+```
+
+### Python Indentation
+
+Indentation refers to the spaces at the beginning of a code line.
+
+Where in other programming languages the indentation in code is for readability only, the indentation in Python is very important. Python uses indentation to indicate a block of code.
+
+### Python Comments
+
+Comments can be used to explain Python code. Comments can be used to make the code more readable. Comments can be used to prevent execution when testing code. Creating a Comment A comment starts with a #, and Python will ignore them:
+
+```python
+#This is a comment
+print("Hello, World!")
+```
+
+Comments can be placed at the end of a line, and Python will ignore the rest of the line:
+
+```python
+print("Hello, World!") #This is a comment
+```
+
+Comments does not have to be text to explain the code, it can also be used to prevent Python from executing code:
+
+```python
+#print("Hello, World!")
+print("Cheers, Mate!")
+```
+
+### Python Docstrings
+
+Docstrings are not comments, but they are documentation strings. These docstrings are within triple quotes. They are not assigned to any variable and therefore, at times, serve the purpose of comments as well.
+
+```python
+"""This is a
+multiline docstring."""
+print("Hello, World!")
+```
+
+### Python Variables
+
+Variables are containers for storing data values. Unlike other programming languages, Python has no command for declaring a variable. A variable is created the moment you first assign a value to it.
+
+```python
+x = 5
+y = "Hello, World!"
+print(x)
+print(y)
+```
+
+Variables do not need to be declared with any particular type and can even change type after they have been set.
+
+```python
+x = 4 # x is of type int
+x = "Sally" # x is now of type str
+print(x)
+```
+
+String variables can be declared either by using single or double quotes:
+
+```python
+x = "John"
+# is the same as
+x = 'John'
+```
+
+### Python Casting
+
+Specify a Variable Type There may be times when you want to specify a type on to a variable. This can be done with casting. Python is an object-orientated language, and as such it uses classes to define data types, including its primitive types. Casting in python is therefore done using constructor functions:
+
+```python
+x = str(3) # x will be '3'
+y = int(3) # y will be 3
+z = float(3) # z will be 3.0
+```
+
+### Python Strings
+
+Strings in python are surrounded by either single quotation marks, or double quotation marks.
+
+```python
+print("Hello")
+print('Hello')
+```
+
+You can assign a multiline string to a variable by using three quotes:
+
+```python
+a = """Lorem ipsum dolor sit amet,
+consectetur adipiscing elit,
+sed do eiusmod tempor incididunt
+ut labore et dolore magna aliqua."""
+print(a)
+```
+
+### Python Booleans
+
+Booleans represent one of two values: True or False.
+
+```python
+print(10 > 9)
+print(10 == 9)
+print(10 < 9)
+```
+
+### Python Operators
+
+Operators are used to perform operations on variables and values. Python divides the operators in the following groups:
+
+- Arithmetic operators
+- Assignment operators
+- Comparison operators
+- Logical operators
+- Identity operators
+- Membership operators
+
+#### Python Arithmetic Operators
+
+Arithmetic operators are used with numeric values to perform common mathematical operations:
+
+```python
+x = 5
+y = 3
+print(x + y)
+print(x - y)
+print(x * y)
+print(x / y)
+print(x % y)
+print(x ** y)
+print(x // y)
+```
+
+#### Python Assignment Operators
+
+Assignment operators are used to assign values to variables:
+
+```python
+x = 5
+print(x)
+x += 3
+print(x)
+x -= 3
+print(x)
+x *= 3
+print(x)
+```
+
+#### Python Comparison Operators
+
+Comparison operators are used to compare two values:
+
+```python
+x = 5
+y = 3
+print(x == y)
+print(x != y)
+
+print(x > y)
+print(x < y)
+
+print(x >= y)
+print(x <= y)
+```
+
+#### Python Logical Operators
+
+Logical operators are used to combine conditional statements:
+
+```python
+x = 5
+print(x > 3 and x < 10)
+print(x > 3 or x < 4)
+print(not(x > 3 and x < 10))
+```
+
+#### Python Identity Operators
+
+Identity operators are used to compare the objects, not if they are equal, but if they are actually the same object, with the same memory location:
+
+```python
+x = ["apple", "banana"]
+y = ["apple", "banana"]
+z = x
+print(x is z)
+print(x is y)
+print(x == y)
+print(x is not z)
+print(x is not y)
+print(x != y)
+```
+
+#### Python Membership Operators
+
+Membership operators are used to test if a sequence is presented in an object:
+
+```python
+x = ["apple", "banana"]
+print("banana" in x)
+print("pineapple" not in x)
+```
+
+### Python Lists
+
+Lists are used to store multiple items in a single variable. Lists are one of 4 built-in data types in Python used to store collections of data, the other 3 are Tuple, Set, and Dictionary, all with different qualities and usage. Lists are created using square brackets:
+
+```python
+thislist = ["apple", "banana", "cherry"]
+print(thislist)
+```
+
+### Python Tuples
+
+Tuples are used to store multiple items in a single variable. A tuple is a collection which is ordered and unchangeable. Tuples are written with round brackets.
+
+```python
+thistuple = ("apple", "banana", "cherry")
+print(thistuple)
+```
+
+### Python Sets
+
+Sets are used to store multiple items in a single variable. A set is a collection which is both unordered and unindexed. Sets are written with curly brackets.
+
+```python
+thisset = {"apple", "banana", "cherry"}
+print(thisset)
+```
+
+### Python Dictionaries
+
+Dictionaries are used to store data values in key:value pairs. A dictionary is a collection which is ordered*, changeable and does not allow duplicates. Dictionaries are written with curly brackets, and have keys and values.
+
+```python
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+print(thisdict)
+```
+
+### Python If...Else
+
+Python supports the usual logical conditions from mathematics:
+
+- Equals: a == b
+- Not Equals: a != b
+- Less than: a < b
+- Less than or equal to: a <= b
+
+```python
+a = 33
+b = 200
+if b > a:
+  print("b is greater than a")
+```
+
+#### Elif
+
+The elif keyword is pythons way of saying "if the previous conditions were not true, then try this condition".
+
+```python
+a = 33
+b = 33
+if b > a:
+  print("b is greater than a")
+elif a == b:
+  print("a and b are equal")
+```
+
+#### Else
+
+The else keyword catches anything which isn't caught by the preceding conditions.
+
+```python
+a = 200
+b = 33
+if b > a:
+  print("b is greater than a")
+elif a == b:
+  print("a and b are equal")
+else:
+  print("a is greater than b")
+```
+
+#### Short Hand If
+
+If you have only one statement to execute, you can put it on the same line as the if statement.
+
+```python
+if a > b: print("a is greater than b")
+```
+
+#### Short Hand If...Else
+
+If you have only one statement to execute, one for if, and one for else, you can put it all on the same line:
+
+```python
+a = 2
+b = 330
+print("A") if a > b else print("B")
+```
+
+#### And
+
+The and keyword is a logical operator, and is used to combine conditional statements:
+
+```python
+a = 200
+b = 33
+c = 500
+if a > b and c > a:
+  print("Both conditions are True")
+```
+
+#### Or
+
+The or keyword is a logical operator, and is used to combine conditional statements:
+
+```python
+a = 200
+b = 33
+c = 500
+if a > b or a > c:
+  print("At least one of the conditions is True")
+```
+
+### Python While Loops
+
+With the while loop we can execute a set of statements as long as a condition is true.
+
+```python
+i = 1
+while i < 6:
+  print(i)
+  i += 1
+```
+
+#### The break Statement
+
+With the break statement we can stop the loop even if the while condition is true:
+
+```python
+i = 1
+while i < 6:
+  print(i)
+  if i == 3:
+    break
+  i += 1
+```
+
+#### The continue Statement
+
+With the continue statement we can stop the current iteration, and continue with the next:
+
+```python
+i = 0
+while i < 6:
+  i += 1
+  if i == 3:
+    continue
+  print(i)
+```
+
+#### The else Statement
+
+With the else statement we can run a block of code once when the condition no longer is true:
+
+```python
+i = 1
+while i < 6:
+  print(i)
+  i += 1
+else:
+  print("i is no longer less than 6")
+```
+
+### Python For Loops
+
+A for loop is used for iterating over a sequence (that is either a list, a tuple, a dictionary, a set, or a string).
+
+```python
+fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+  print(x)
+```
+
+#### Looping Through a String
+
+Even strings are iterable objects, they contain a sequence of characters:
+
+```python
+for x in "banana":
+  print(x)
+```
+
+#### The break Statement
+
+With the break statement we can stop the loop before it has looped through all the items:
+
+```python
+fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+  print(x)
+  if x == "banana":
+    break
+```
+
+#### The continue Statement
+
+With the continue statement we can stop the current iteration of the loop, and continue with the next:
+
+```python
+fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+  if x == "banana":
+    continue
+  print(x)
+```
+
+#### The range() Function
+
+To loop through a set of code a specified number of times, we can use the range() function, The range() function returns a sequence of numbers, starting from 0 by default, and increments by 1 (by default), and ends at a specified number.
+
+```python
+for x in range(6):
+  print(x)
+```
+
+#### Else in For Loop
+
+The else keyword in a for loop specifies a block of code to be executed when the loop is finished:
+
+```python
+for x in range(6):
+  print(x)
+else:
+  print("Finally finished!")
+```
+
+#### Nested Loops
+
+A nested loop is a loop inside a loop. The "inner loop" will be executed one time for each iteration of the "outer loop":
+
+```python
+adj = ["red", "big", "tasty"]
+fruits = ["apple", "banana", "cherry"]
+for x in adj:
+  for y in fruits:
+    print(x, y)
+```
+
+#### The pass Statement
+
+for loops cannot be empty, but if you for some reason have a for loop with no content, put in the pass statement to avoid getting an error.
+
+```python
+for x in [0, 1, 2]:
+  pass
+```
+
+### Python Functions
+
+A function is a block of code which only runs when it is called. You can pass data, known as parameters, into a function. A function can return data as a result.
+
+```python
+def my_function():
+  print("Hello from a function")
+```
+
+#### Arguments
+
+Information can be passed into functions as arguments. Arguments are specified after the function name, inside the parentheses. You can add as many arguments as you want, just separate them with a comma.
+
+```python
+def my_function(fname):
+  print(fname + " Refsnes")
+
+my_function("Emil")
+my_function("Tobias")
+my_function("Linus")
+```
+
+#### Parameters or Arguments?
+
+The terms parameter and argument can be used for the same thing: information that are passed into a function.
+
+From a function's perspective:
+
+- A parameter is the variable listed inside the parentheses in the function definition.
+- An argument is the value that is sent to the function when it is called.
+
+#### Number of Arguments
+
+By default, a function must be called with the correct number of arguments. Meaning that if your function expects 2 arguments, you have to call the function with 2 arguments, not more, and not less.
+
+```python
+def my_function(fname, lname):
+  print(fname + " " + lname)
+
+my_function("Emil", "Refsnes")
+```
+
+#### Arbitrary Arguments, *args
+
+If you do not know how many arguments that will be passed into your function, add a * before the parameter name in the function definition.
+
+```python
+def my_function(*kids):
+  print("The youngest child is " + kids[2])
+
+my_function("Emil", "Tobias", "Linus")
+```
+
+#### Keyword Arguments
+
+You can also send arguments with the key = value syntax.
+
+```python
+def my_function(child3, child2, child1):
+  print("The youngest child is " + child3)
+
+my_function(child1 = "Emil", child2 = "Tobias", child3 = "Linus")
+```
+
+#### Arbitrary Keyword Arguments, **kwargs
+
+If you do not know how many keyword arguments that will be passed into your function, add two asterisk: ** before the parameter name in the function definition.
+
+```python
+def my_function(**kid):
+  print("His last name is " + kid["lname"])
+
+my_function(fname = "Tobias", lname = "Refsnes")
+```
+
+#### Default Parameter Value
+
+If we call the function without argument, it uses the default value.
+
+```python
+def my_function(country = "Norway"):
+  print("I am from " + country)
+
+my_function("Sweden")
+my_function("India")
+my_function()
+my_function("Brazil")
+```
+
+#### Passing a List as an Argument
+
+You can send any data types of argument to a function (string, number, list, dictionary etc.), and it will be treated as the same data type inside the function.
+
+```python
+def my_function(food):
+  for x in food:
+    print(x)
+
+fruits = ["apple", "banana", "cherry"]
+
+my_function(fruits)
+```
+
+#### Return Values
+
+To let a function return a value, use the return statement.
+
+```python
+def my_function(x):
+  return 5 * x
+
+print(my_function(3))
+print(my_function(5))
+print(my_function(9))
+```
+
+#### The pass Statement
+
+function definitions cannot be empty, but if you for some reason have a function definition with no content, put in the pass statement to avoid getting an error.
+
+```python
+def myfunction():
+  pass
+```
+
+### Python Lambda
+
+A lambda function is a small anonymous function. A lambda function can take any number of arguments, but can only have one expression.
+
+```python
+x = lambda a : a + 10
+print(x(5))
+```
+
+#### Lambda functions can take any number of arguments:
+
+```python
+x = lambda a, b : a * b
+print(x(5, 6))
+```
+
+#### Why Use Lambda Functions?
+
+The power of lambda is better shown when you use them as an anonymous function inside another function. Say you have a function definition that takes one argument, and that argument will be multiplied with an unknown number:
+
+```python
+def myfunc(n):
+  return lambda a : a * n
+  
+mydoubler = myfunc(2)
+
+print(mydoubler(11))
+```
+
+* Use lambda functions when an anonymous function is required for a short period of time.
+* Lambda functions can be used wherever function objects are required.
+
+### Python Arrays
+
+Arrays are used to store multiple values in one single variable.
+
+```python
+cars = ["Ford", "Volvo", "BMW"]
+```
+
+#### What is an Array?
+
+An array is a special variable, which can hold more than one value at a time. If you have a list of items (a list of car names, for example), storing the cars in single variables could look like this:
+
+```python
+car1 = "Ford"
+car2 = "Volvo"
+car3 = "BMW"
+```
+
+#### Access the Elements of an Array
+
+You refer to an array element by referring to the index number.
+
+```python
+x = cars[0]
+```
+
+#### Modify the value of the first array item:
+
+```python
+cars[0] = "Toyota"
+```
+
+#### The Length of an Array
+
+Use the len() method to return the length of an array (the number of elements in an array).
+
+```python
+x = len(cars)
+```
+
+#### Looping Array Elements
+
+You can use the for in loop to loop through all the elements of an array.
+
+```python
+for x in cars:
+  print(x)
+```
+
+#### Adding Array Elements
+
+You can use the append() method to add an element to an array.
+
+```python
+cars.append("Honda")
+```
+
+#### Removing Array Elements
+
+You can use the pop() method to remove an element from the array.
+
+```python
+cars.pop(1)
+```
+
+#### The del keyword removes the specified index:
+
+```python
+del cars[0]
+```
+
+#### The del keyword can also delete the array completely:
+
+```python
+del cars
+```
+
+#### The clear() method empties the cars array:
+
+```python
+cars.clear()
+```
+
+This is the end of the Python tutorial. Now you can try to solve some exercises.
+
+## Exercises
+
+### Exercise 1
+
+Create a function that takes a name and prints "Hello, [name]". Call the function with your name.
+
+### Exercise 2
+
+Create a function that takes a number and prints the number multiplied by 2. Call the function with the number 5.
+
+### Exercise 3
+
+Create a function that takes a list of numbers and prints the sum of the numbers. Call the function with the list [1, 2, 3, 4, 5].
+
+### Exercise 4
+
+Create a function that takes a list of numbers and prints the largest number in the list. Call the function with the list [1, 2, 3, 4, 5].
+
+### Exercise 5
+
+Create a function that takes a list of numbers and prints the smallest number in the list. Call the function with the list [1, 2, 3, 4, 5].
+
+### Exercise 6
+
+Create a function that takes a list of numbers and prints the average of the numbers. Call the function with the list [1, 2, 3, 4, 5].
+
+### Exercise 7
+
+Create a function that takes a list of numbers and prints the numbers in ascending order. Call the function with the list [5, 3, 1, 2, 4].
+
+### Exercise 8
+
+Create a function that takes a list of numbers and prints the numbers in descending order. Call the function with the list [5, 3, 1, 2, 4].
+
+This ends the exercises.
+
+## Solutions
+
+### Solution 1
+
+```python
+def hello(name):
+  print("Hello, " + name)
+
+hello("John")
+```
+
+### Solution 2
+
+```python
+def multiply(number):
+  print(number * 2)
+
+multiply(5)
+```
+
+### Solution 3
+
+```python
+def sum(numbers):
+  total = 0
+  for number in numbers:
+    total += number
+  print(total)
+
+sum([1, 2, 3, 4, 5])
+```
+
+### Solution 4
+
+```python
+def largest(numbers):
+  largest = numbers[0]
+  for number in numbers:
+    if number > largest:
+      largest = number
+  print(largest)
+
+largest([1, 2, 3, 4, 5])
+```
+
+### Solution 5
+
+```python
+def smallest(numbers):
+  smallest = numbers[0]
+  for number in numbers:
+    if number < smallest:
+      smallest = number
+  print(smallest)
+
+smallest([1, 2, 3, 4, 5])
+```
+
+### Solution 6
+
+```python
+def average(numbers):
+  total = 0
+  for number in numbers:
+    total += number
+  print(total / len(numbers))
+
+average([1, 2, 3, 4, 5])
+```
+
+### Solution 7
+
+```python
+def ascending(numbers):
+  numbers.sort()
+  print(numbers)
+
+ascending([5, 3, 1, 2, 4])
+```
+
+* We have not covered the sort() method yet, but it is a built-in method that sorts the list in ascending order.
+
+### Solution 8
+
+```python
+def descending(numbers):
+  numbers.sort(reverse=True)
+  print(numbers)
+
+descending([5, 3, 1, 2, 4])
+```
+
+This ends the solutions.
+
+**The End!**
+
+**Thank you for reading! Hope you enjoyed it!**
