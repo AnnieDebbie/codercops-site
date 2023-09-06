@@ -11,6 +11,7 @@ export default function Head() {
       <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       <meta content="width=device-width, initial-scale=1" name="viewport" />
+      <meta name="monetag" content="edfb94dc9bfb48abdd956fe32d5f8a9d"></meta>
     </>
   )
 }
