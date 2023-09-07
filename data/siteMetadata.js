@@ -60,7 +60,7 @@ const siteMetadata = {
       metadata: '0',
       // theme example: light, dark, dark_dimmed, dark_high_contrast
       // transparent_dark, preferred_color_scheme, custom
-      inputposition: "top",
+      inputPosition: "top",
       theme: 'light',
       // theme when dark mode
       darkTheme: 'transparent_dark',
