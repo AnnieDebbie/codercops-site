@@ -57,9 +57,9 @@ function LoginRegistration() {
               Log in
             </button>
 
-            <button className="bg-[#403B3B] rounded w-full py-4 flex gap-2 items-center justify-center mt-8 ">
+            <button className="dark:bg-[#403B3B] bg-[#FF8080]  rounded w-full py-4 flex gap-2 items-center justify-center mt-8 ">
               <SocialIcon kind="github" href={siteMetadata.github} size={10} />
-              <span className="text-gray-100 text-lg md:text-[32px] font-bold ">
+              <span className="dark:text-gray-100 text-lg md:text-[32px] font-bold">
                 Log In Or Sign Up with Github
               </span>
             </button>
@@ -79,19 +79,45 @@ function LoginRegistration() {
 
       {!isLogin && (
         <div className="md:grid md:grid-cols-2  md:gap-10 md:place-content-between md:mx-10">
-          <section className="hidden md:block md:relative md:mt-[150px]">
-            <Image width={300} height={300} src="/static/images/frame-1.png" alt="curved pattern" />
-
-            <div className="absolute top-[170px] left-[220px]">
+          {theme === 'dark' && (
+            <section className="hidden md:block md:relative md:mt-[150px]">
               <Image
                 width={300}
                 height={300}
-                src="/static/images/frame-2.png"
+                src="/static/images/frame-1.png"
                 alt="curved pattern"
               />
-            </div>
-          </section>
 
+              <div className="absolute top-[170px] left-[220px]">
+                <Image
+                  width={300}
+                  height={300}
+                  src="/static/images/frame-2.png"
+                  alt="curved pattern"
+                />
+              </div>
+            </section>
+          )}
+
+          {theme !== 'dark' && (
+            <section className="hidden md:block md:relative md:mt-[150px]">
+              <Image
+                width={300}
+                height={300}
+                src="/static/images/frame-dark-1.png"
+                alt="curved pattern"
+              />
+
+              <div className="absolute top-[170px] left-[220px]">
+                <Image
+                  width={300}
+                  height={300}
+                  src="/static/images/frame-dark-2.png"
+                  alt="curved pattern"
+                />
+              </div>
+            </section>
+          )}
           <section>
             <p className="dark:text-gray-100 text-gray-900 text-[32px] sm:text-[32px] font-bold tracking-[1.2px] text-center">
               Register Your Account
@@ -167,9 +193,9 @@ function LoginRegistration() {
                 Register
               </button>
 
-              <button className="bg-[#403B3B] rounded w-full py-4 flex gap-2 items-center justify-center mt-8 ">
+              <button className="dark:bg-[#403B3B] bg-[#FF8080] rounded w-full py-4 flex gap-2 items-center justify-center mt-8 ">
                 <SocialIcon kind="github" href={siteMetadata.github} size={10} />
-                <span className="text-gray-100 text-xl font-bold ">
+                <span className="dark:text-gray-100 text-xl font-bold ">
                   Log In Or Sign Up with Github
                 </span>
               </button>
